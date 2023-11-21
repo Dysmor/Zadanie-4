@@ -1,0 +1,71 @@
+Zadanie 4 praktyki
+Ogólnie dostępne techniki kartograficzne dostępne w bazach danych:
+_______________________________________________________________________
+ Haszowanie hasła - Hashowanie to proces jednokierunkowy, 
+  który konwertuje dane wejściowe (hasło) na unikalny ciąg znaków (hash). 
+  Umożliwia porównywanie haseł bez przechowywania ich w jawnej formie.
+ Salt(sól) - jest to proces dodawania losowego i unikalnego ciągu znaków do hasła przed haszowaniem. 
+   Zapobiega to atakom typu "rainbow table", gdzie pre-obliczone hasze są przechowywane w tabeli.
+ KDF (Key Derivation Function) to funkcja, która przekształca hasło w klucz kryptograficzny o stałej długości. 
+  Pomaga wzmocnić bezpieczeństwo, zwłaszcza w kontekście przechowywania haseł.
+ Algorytmy klucza symetrycznego- W niektórych przypadkach, zwłaszcza gdy hasła muszą być przechowywane w formie możliwej do odzyskania,
+   można zastosować algorytmy szyfrowania symetrycznego w połączeniu z kluczami szyfrującymi.
+______________________________________________________________________
+Czym się różni SHA256 od SHA512?
+
+Długość hasza:
+SHA256: Generuje hasze o długości 256 bitów, co odpowiada 32 bajtom.
+SHA512: Generuje hasze o długości 512 bitów, co odpowiada 64 bajtom.
+
+Ilość rund (operacji):
+SHA256: Wykonuje 64 rundy operacji.
+SHA512: Wykonuje 80 rund operacji.
+
+Bezpieczeństwo:
+Zazwyczaj, im dłuższy hasz, tym trudniej jest przeprowadzić atak brutalnej siły (brute-force) lub znaleźć kolizje (dwie różne dane generujące ten sam hash).
+SHA512 jest ogólnie uważany za bardziej bezpieczny niż SHA256, ze względu na dłuższą długość hasza.
+
+Zasobożerność:
+Obliczenia SHA512 są bardziej zasobożerne niż SHA256 ze względu na większą ilość rund operacji.
+
+Zastosowanie:
+SHA256 jest powszechnie stosowany i uznawany za bezpieczny do wielu zastosowań, takich jak weryfikacja integralności plików, certyfikaty cyfrowe, itp.
+SHA512 jest stosowany tam, gdzie wymagane jest wyższe bezpieczeństwo lub w przypadku specjalistycznych zastosowań, ale może być bardziej zasobożerny.
+
+Więc wnioski są takie, że do mniej wymagających operacji SHA256 będzie wystarczający natomiast jeżeli bedziemy wymagać większego bezpieczeństwa 
+SHA512 bedzie idealny.
+______________________________________________________________________
+Za co odpowiada długość klucza w algorytmach?
+
+Długość kluczy w algorytmach kryptograficznych bezpośrednio wpływa na poziom bezpieczeństwa tych algorytmów.
+ Ogólnie rzecz biorąc, długość klucza określa liczbę bitów używanych do ochrony danych.
+ Im dłuższy klucz, tym trudniej złamać dany algorytm za pomocą różnych ataków kryptograficznych.
+______________________________________________________________________
+Jaki klucz wybierzemy do zapisania hasła?
+
+Powinniśmy zastosować funkcji hashujących wraz z wykorzystaniem soli.
+______________________________________________________________________
+Jeśli chcecie użyć różnych kluczy to jakich i dlaczego?
+
+W kontekście kryptografii, używanie różnych kluczy może dotyczyć różnych rodzajów kluczy kryptograficznych, w zależności do czego chcemy je zastosować.
+Np:
+
+Bezpieczna wymiana kluczy w komunikacji sieciowej:
+  Rodzaj klucza: Klucz publiczny i prywatny (asymetryczny).
+  Dlaczego: Klucze asymetryczne pozwalają na bezpieczną wymianę kluczy publicznych, co jest szczególnie istotne w kryptografii klucza publicznego.
+    Klucz prywatny pozostaje poufny, a klucz publiczny może być udostępniony publicznie.
+
+Podpisywanie cyfrowe:
+  Rodzaj klucza: Klucz prywatny i publiczny (asymetryczny).
+  Dlaczego: Klucz prywatny pozwala na podpisywanie cyfrowe, a klucz publiczny na weryfikację podpisu. To umożliwia uwierzytelnianie i potwierdzanie integralności danych.
+______________________________________________________________________
+Po co szyfrować dane kluczem który daje się złamać?
+
+Szyfrowanie danych za pomocą łatwych do złamania kluczy jest bezpieczne tylko przy niskim poziomie bezpieczeństwa. 
+Jednakże w niektórych przypadkach dopuszczalne jest użycie słabszych kluczy lub algorytmów szyfrujących, pod warunkiem, że jest to w pełni zamierzone i zgodne z kontekstem użycia, np.:
+Tam, gdzie wymagana jest wysoka wydajność, można zaakceptować pewne uproszczenia zabezpieczeń w celu zapewnienia szybkości lub zgodności ze starszymi systemami, które nie obsługują nowoczesnych algorytmów.
+
+Ale co najważniejsze, zalecane są silne środki bezpieczeństwa. Słaba funkcja hashująca lub brak soli mogą sprawić, że włamywacze będą łatwiej łamali hasła.
+
+
+
